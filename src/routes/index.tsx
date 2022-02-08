@@ -1,5 +1,5 @@
 import { Route, Routes, useLocation } from 'react-router-dom';
-import Home from '../screens/home/index';
+import Home from '../screens/login/index';
 
 
 export default function Router() {
