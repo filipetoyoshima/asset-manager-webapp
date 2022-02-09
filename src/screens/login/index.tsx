@@ -16,7 +16,10 @@ export default function Home() {
     const password = passwordRef.current.state.value;
 
     login({ email, password })
-      .then((res) => {console.log(res)})
+      .then((res) => {
+        localStorage.setItem('accessToken', res.token);
+        window.location.href = '/in/';
+      })
       .catch(() => {});
   }
 
