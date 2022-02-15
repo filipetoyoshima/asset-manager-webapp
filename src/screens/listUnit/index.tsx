@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Container } from './style'
 import { getMyCompanyUnits } from '../../api/company'
 import { ICompany, IUnit } from '../../interfaces'
+import UnitCard from '../../components/unitCard'
 
 function ListUnit() {
     const [company, setCompany] = useState<ICompany | null>(null);
@@ -27,7 +28,7 @@ function ListUnit() {
                 <div>
                     <h1>{company.name}</h1>
                     {units.map((unit) => 
-                        <div key={unit._id}>{unit.name}</div>
+                        <UnitCard key={unit._id} unit={unit}/>
                     )}
                 </div>
             }
