@@ -7,7 +7,7 @@ export const CustomRow = styled(Row)`
     border-radius: 7px;
     margin: 0 10px 10px 10px;
     padding: 10px;
-    max-width: 500px;
+    min-width: 450px;
 
     .title {
         display: block;

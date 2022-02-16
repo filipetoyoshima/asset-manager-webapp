@@ -3,6 +3,9 @@ import { Container } from './style'
 import { getMyCompanyUnits } from '../../api/company'
 import { ICompany, IUnit } from '../../interfaces'
 import UnitCard from '../../components/unitCard'
+import { Typography } from 'antd'
+
+const { Title } = Typography
 
 function ListUnit() {
     const [company, setCompany] = useState<ICompany | null>(null);
@@ -23,15 +26,21 @@ function ListUnit() {
 
     return (
         <Container>
-            {loading || company == null ?
-                <div>Loading...</div> :
-                <div>
-                    <h1>{company.name}</h1>
-                    {units.map((unit) => 
-                        <UnitCard key={unit._id} unit={unit}/>
-                    )}
-                </div>
-            }
+            <div id='wrapper'>
+                {loading || company == null ?
+                    <div>Loading...</div> :
+                    <div>
+                        <Title level={2}>{company.name}</Title>
+                        <div id='unit-list'>
+                            {units.map((unit) =>
+                                <div className='unit-card'>
+                                    <UnitCard key={unit._id} unit={unit}/>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                }
+            </div>
         </Container>
     )
 }
