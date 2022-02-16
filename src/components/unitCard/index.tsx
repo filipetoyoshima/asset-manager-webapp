@@ -15,13 +15,20 @@ function UnitCard({ unit }: IProps) {
     const [stoppedAssets, setStoppedAssets] = useState<Number | null>(null);
     
     useEffect(() => {
+        let cancel = false;
         getUnitAssets(unit._id)
             .then(data => {
-                setAssets(data.unit);
-                setRunningAssets(data.assets.filter((asset:IAsset) => asset.status === 'running').length);
-                setAlertingAssets(data.assets.filter((asset:IAsset) => asset.status === 'alerting').length);
-                setStoppedAssets(data.assets.filter((asset:IAsset) => asset.status === 'stopped').length);
-            });
+                if (!cancel) {
+                    setAssets(data.unit);
+                    setRunningAssets(data.assets.filter((asset:IAsset) => asset.status === 'running').length);
+                    setAlertingAssets(data.assets.filter((asset:IAsset) => asset.status === 'alerting').length);
+                    setStoppedAssets(data.assets.filter((asset:IAsset) => asset.status === 'stopped').length);
+                }
+            })
+        
+        return () => {
+            cancel = true;
+        };
     }, [unit._id]);
 
     return (
