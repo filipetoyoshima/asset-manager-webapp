@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
     padding: 20px;
@@ -16,5 +17,15 @@ export const Container = styled.div`
     }
 
     .unit-card{
+    }
+`;
+
+export const NonStyledLink = styled(Link)`
+    text-decoration: none;
+    color: inherit;
+    
+    &:focus, &:hover, &:visited, &:link, &:active {
+        text-decoration: none;
+        color: inherit;
     }
 `;

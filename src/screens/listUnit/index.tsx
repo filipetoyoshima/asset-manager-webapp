@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react'
-import { Container } from './style'
-import { getMyCompanyUnits } from '../../api/company'
-import { ICompany, IUnit } from '../../interfaces'
-import UnitCard from '../../components/unitCard'
-import { Typography } from 'antd'
+import { useEffect, useState } from 'react';
+import { Container, NonStyledLink } from './style';
+import { getMyCompanyUnits } from '../../api/company';
+import { ICompany, IUnit } from '../../interfaces';
+import UnitCard from '../../components/unitCard';
+import { Typography } from 'antd';
 
 const { Title } = Typography
 
@@ -23,9 +23,6 @@ function ListUnit() {
             });
     }, []);
 
-    const onUnitClick = (unit: IUnit) => {
-        window.location.href = '/unit/' + unit._id;
-    }
 
     return (
         <Container>
@@ -36,9 +33,9 @@ function ListUnit() {
                         <Title level={2}>{company.name}</Title>
                         <div id='unit-list'>
                             {units.map((unit) =>
-                                <div key={unit._id} className='unit-card' onClick={e => onUnitClick(unit)}>
+                                <NonStyledLink to={`unit/${unit._id}`}>
                                     <UnitCard unit={unit}/>
-                                </div>
+                                </NonStyledLink>
                             )}
                         </div>
                     </div>
