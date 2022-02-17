@@ -1,7 +1,7 @@
 const colors = {
-    darkblue: '#0d1a26',
-    lightblue: '#0079eb',
-    lightgray: '#f0f2f5',
+    darkBlue: '#0d1a26',
+    lightBlue: '#0079eb',
+    lightGray: '#f0f2f5',
 
     successGreen: '#069b44',
     warningOrange: '#ca9b00',

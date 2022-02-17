@@ -23,6 +23,9 @@ function ListUnit() {
             });
     }, []);
 
+    const onUnitClick = (unit: IUnit) => {
+        window.location.href = '/unit/' + unit._id;
+    }
 
     return (
         <Container>
@@ -33,8 +36,8 @@ function ListUnit() {
                         <Title level={2}>{company.name}</Title>
                         <div id='unit-list'>
                             {units.map((unit) =>
-                                <div className='unit-card'>
-                                    <UnitCard key={unit._id} unit={unit}/>
+                                <div key={unit._id} className='unit-card' onClick={e => onUnitClick(unit)}>
+                                    <UnitCard unit={unit}/>
                                 </div>
                             )}
                         </div>

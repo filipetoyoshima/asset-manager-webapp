@@ -6,10 +6,10 @@ export const Container = styled(Layout)`
     height: 100vh;
 
     .header {
-        background: ${colors.lightblue};
+        background: ${colors.lightBlue};
 
         .ant-typography {
-            color: ${colors.lightgray};
+            color: ${colors.lightGray};
             margin-bottom: 0;
             line-height: 64px;
         }

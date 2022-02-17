@@ -8,6 +8,12 @@ export const CustomRow = styled(Row)`
     margin: 0 10px 10px 10px;
     padding: 10px;
     min-width: 450px;
+    cursor: pointer;
+    background-image: linear-gradient(130deg, ${colors.lightGray} 75%, ${colors.successGreen});
+
+    hover: {
+        background-color: ${colors.lightGray};
+    }
 
     .title {
         display: block;
@@ -30,7 +36,7 @@ export const CustomRow = styled(Row)`
             font-size: 1.2em;
             font-weight: bold;
             border-radius: 25%;
-            color: ${colors.lightgray};
+            color: ${colors.lightGray};
         }
 
         .running {
