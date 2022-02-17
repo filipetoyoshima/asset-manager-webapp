@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import LayoutComponent from '../components/layout';
 import ListUnit from '../screens/listUnit';
+import UnitScreen from '../screens/unitScreen';
 
 
 export default function LoggedRoutes() {
@@ -8,6 +9,7 @@ export default function LoggedRoutes() {
         <LayoutComponent>
             <Routes>
                 <Route path='/' element={<ListUnit/>} />
+                <Route path='/unit/:id' element={<UnitScreen/>} />
             </Routes>
         </LayoutComponent>
     );
