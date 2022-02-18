@@ -12,10 +12,17 @@ interface IData {
     alerting?: number;
 }
 
+interface IHealhLevelData {
+    name: string;
+    y: number;
+    color: string;
+}
+
 export default function UnitScreen() {
     const [unit, setUnit] = useState<IUnit | null>(null);
     const [assets, setAssets] = useState<Array<IAsset>>([]);
     const [data, setData] = useState<IData>({});
+    const [healthLevels, setHealthLevels] = useState<Array<IHealhLevelData>>([]);
 
     useEffect(() => {
         let cancel = false;
@@ -43,12 +50,26 @@ export default function UnitScreen() {
         });
     }, [assets]);
 
-    const chartOptions = {
+    useEffect(() => {
+        setHealthLevels(assets.map((asset:IAsset) => {
+            const color =
+                asset.healthLevel > 75 ? colors.successGreen
+                : asset.healthLevel > 50 ? colors.warningOrange
+                : colors.errorRed;
+            return {
+                name: asset.name,
+                y: asset.healthLevel,
+                color,
+            }
+        }));
+    }, [assets])
+
+    const pieChartOptions = {
         chart: {
             type: 'pie'
         },
         title: {
-            text: 'Assets'
+            text: 'Status'
         },
         series: [{
             data: [{
@@ -67,10 +88,31 @@ export default function UnitScreen() {
         }],
     }
 
+    const barChartOptions = {
+        chart: {
+            type: 'bar'
+        },
+        title: {
+            text: 'Níveis de Saúde'
+        },
+        series: {
+            data: healthLevels,
+        },
+        xAxis: {
+            categories: healthLevels.map(level => level.name),
+        },
+        yAxis: {
+            title: {
+                text: 'Nível de Saúde'
+            },
+        },
+    }
+
     return (
-        <Container>
+        <Container>   
             <div>
-                <HighchartsReact highcharts={Highcharts} options={chartOptions}/>
+                <HighchartsReact highcharts={Highcharts} options={pieChartOptions}/>
+                <HighchartsReact highcharts={Highcharts} options={barChartOptions}/>
             </div>
             <div>{JSON.stringify(assets)}</div>
         </Container>
