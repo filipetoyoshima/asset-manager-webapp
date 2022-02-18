@@ -4,7 +4,10 @@ import { IUnit, IAsset } from '../../interfaces';
 import { useEffect, useState } from 'react';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
+import { Typography } from 'antd';
 import colors from '../../colors';
+
+const { Title } = Typography;
 
 interface IData {
     running?: number;
@@ -77,11 +80,11 @@ export default function UnitScreen() {
                 y: data.running,
                 color: colors.successGreen,
             }, {
-                name: 'Operando con Problemas',
+                name: 'Operando com Alertas',
                 y: data.alerting,
                 color: colors.warningOrange,
             }, {
-                name: 'Operando con Alertas',
+                name: 'Inopertantes',
                 y: data.stopped,
                 color: colors.errorRed,
             }],
@@ -96,6 +99,7 @@ export default function UnitScreen() {
             text: 'Níveis de Saúde'
         },
         series: {
+            name: null,
             data: healthLevels,
         },
         xAxis: {
@@ -105,14 +109,20 @@ export default function UnitScreen() {
             title: {
                 text: 'Nível de Saúde'
             },
+            min: 0,
+            max: 100,
+        },
+        legend: {
+            enabled: false,
         },
     }
 
     return (
-        <Container>   
-            <div>
-                <HighchartsReact highcharts={Highcharts} options={pieChartOptions}/>
-                <HighchartsReact highcharts={Highcharts} options={barChartOptions}/>
+        <Container>
+            <Title level={2}>{unit?.name}</Title>
+            <div id='chart-container'>
+                <HighchartsReact highcharts={Highcharts} options={pieChartOptions} className='chart'/>
+                <HighchartsReact highcharts={Highcharts} options={barChartOptions} className='chart'/>
             </div>
             <div>{JSON.stringify(assets)}</div>
         </Container>
