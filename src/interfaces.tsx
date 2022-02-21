@@ -12,11 +12,13 @@ export interface IUnit {
 }
 
 export interface IAsset {
+    _id: string,
     name: string;
     description?: string;
     model: string;
     status: string;
     healthLevel: number;
+    unitId: string;
 }
 
 export interface IUnitAssets {
