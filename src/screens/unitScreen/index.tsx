@@ -145,7 +145,7 @@ export default function UnitScreen() {
 
     const AssetImageComponent = ({ assetId }: {assetId: string}) => {
         const i = assetImages.findIndex(image => image._id === assetId);
-        if (i === -1) return <></>; // could be a loading image/icon
+        if (i === -1 || assetImages[i].image == null) return <></>; // could be a loading image/icon
         const assetImage = assetImages[i].image;
         return (
             <img
