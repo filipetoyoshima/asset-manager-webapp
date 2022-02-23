@@ -1,6 +1,5 @@
 import { Container } from './style';
 import { getUnitAssets } from '../../api/unit';
-import { getAssetImage } from '../../api/asset';
 import { IUnit, IAsset } from '../../interfaces';
 import { useEffect, useState } from 'react';
 import Highcharts from 'highcharts';
@@ -126,9 +125,12 @@ export default function UnitScreen() {
                 <HighchartsReact highcharts={Highcharts} options={pieChartOptions} className='chart'/>
                 <HighchartsReact highcharts={Highcharts} options={barChartOptions} className='chart'/>
             </div>
-            <div> {
+            <Title level={3}>Assets</Title>
+            <div id='assets-container'> {
                 assets.map(asset => (
-                    <AssetCard asset={asset}/>
+                    <div className='asset-wrapper'>
+                        <AssetCard asset={asset}/>
+                    </div>
                 ))
             } </div>
         </Container>

@@ -70,6 +70,7 @@ export const Container = styled.div`
         height: 100%;
         overflow: hidden;
         text-overflow: ellipsis;
+        text-align: left;
     }
 
     #condition {
