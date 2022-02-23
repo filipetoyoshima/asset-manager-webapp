@@ -5,6 +5,7 @@ import { Container } from './style'
 import { Row, Col, Progress } from 'antd';
 import colors from '../../colors'
 import placeholder from '../../images/placeholder.jpg';
+import { TailSpin } from 'react-loading-icons';
 
 interface IProps {
     asset: IAsset
@@ -98,7 +99,7 @@ function AssetCard({ asset }: IProps) {
                                     alt='placeholder'
                                 />
                         :
-                            <></> // TODO: Loading
+                            <TailSpin stroke={colors.contrastGray}/> // TODO: Loading
                         }
                     </div>
                 </Col>

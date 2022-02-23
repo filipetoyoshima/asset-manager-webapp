@@ -20,7 +20,7 @@ export const Container = styled.div`
         padding-top: 100%;
     }
 
-    img {
+    img, .icon-loading {
         position: absolute;
         top: 0;
         left: 0;
@@ -28,6 +28,10 @@ export const Container = styled.div`
         height: 100%;
         object-fit: cover;
         border-radius: 10px;
+    }
+
+    .icon-loading {
+        padding: 30%;
     }
 
     #text-info {
