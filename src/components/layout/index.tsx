@@ -21,6 +21,9 @@ function LayoutComponent(props: React.PropsWithChildren<{}>) {
                     console.log(collapsed, type);
                 }}
             >
+                <div className='logo'>
+                    <span>Logo</span>
+                </div>
                 <Menu theme='dark'>
                     <Menu.Item key='1' icon={<UnorderedListOutlined/>}>
                         <a href='/in/'>Units</a>

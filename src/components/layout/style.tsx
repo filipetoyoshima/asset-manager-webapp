@@ -6,6 +6,14 @@ export const Container = styled(Layout)`
     height: 100%;
     min-height: 100vh;
 
+    .logo {
+        height: 32px;
+        margin: 16px;
+        background: rgba(255, 255, 255, 0.2);
+        text-align: center;
+        color: white;
+    }
+
     .sider {
         position: sticky;
         height: 100vh;
