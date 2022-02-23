@@ -3,15 +3,14 @@ import { Layout } from 'antd';
 import colors from '../../colors';
 
 export const Container = styled(Layout)`
-    height: 100vh;
+    height: 100%;
+    min-height: 100vh;
 
-    .header {
-        background: ${colors.lightBlue};
-
-        .ant-typography {
-            color: ${colors.lightGray};
-            margin-bottom: 0;
-            line-height: 64px;
-        }
+    .sider {
+        position: sticky;
+        height: 100vh;
+        top: 0;
+        left: 0;
+        z-index: 1;
     }
 `
