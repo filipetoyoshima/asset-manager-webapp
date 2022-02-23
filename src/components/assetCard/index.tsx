@@ -4,6 +4,7 @@ import { getAssetImage } from '../../api/asset'
 import { Container } from './style'
 import { Row, Col, Progress } from 'antd';
 import colors from '../../colors'
+import placeholder from '../../images/placeholder.jpg';
 
 interface IProps {
     asset: IAsset
@@ -37,7 +38,13 @@ function AssetCard({ asset }: IProps) {
                         })
                     }
                 } else if (res.status === 204) {
-                    setImage(null) // TODO: add placeholder image
+                    setImage({
+                        data: null,
+                        headers: {
+                            'content-type': '',
+                            'content-length': 0
+                        }
+                    });
                 }
             })
             .catch(err => {
@@ -79,11 +86,19 @@ function AssetCard({ asset }: IProps) {
             <Row>
                 <Col span={8}>
                     <div id='image'>
-                        {image !== null && // TODO: loading placeholder image
-                            <img
-                                src={`data:${image.headers['content-type']};base64,${image.data.toString('base64')}`}
-                                alt={asset.name}
-                            />
+                        {image != null ?
+                            image.data != null ?
+                                <img
+                                    src={`data:${image.headers['content-type']};base64,${image.data.toString('base64')}`}
+                                    alt={`${asset.name}`}
+                                />
+                            :
+                                <img
+                                    src={placeholder}
+                                    alt='placeholder'
+                                />
+                        :
+                            <></> // TODO: Loading
                         }
                     </div>
                 </Col>
