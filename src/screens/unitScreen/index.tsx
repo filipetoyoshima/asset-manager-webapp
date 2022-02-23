@@ -7,6 +7,7 @@ import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import { Typography } from 'antd';
 import colors from '../../colors';
+import AssetCard from '../../components/assetCard';
 
 const { Title } = Typography;
 
@@ -22,15 +23,9 @@ interface IHealhLevelData {
     color: string;
 }
 
-interface IAssetImage {
-    _id: string;
-    image: any;
-}
-
 export default function UnitScreen() {
     const [unit, setUnit] = useState<IUnit | null>(null);
     const [assets, setAssets] = useState<Array<IAsset>>([]);
-    const [assetImages, setAssetImages] = useState<Array<IAssetImage>>([]);
     const [data, setData] = useState<IData>({});
     const [healthLevels, setHealthLevels] = useState<Array<IHealhLevelData>>([]);
 
@@ -42,25 +37,6 @@ export default function UnitScreen() {
             if (!cancel) {
                 setUnit(res.unit);
                 setAssets(res.assets);
-                res.assets.forEach((asset:IAsset) => {
-                    getAssetImage(asset._id)
-                    .then(imageRes => {
-                        if (!cancel && imageRes.status === 200) {
-                            setAssetImages((prevAssetsImages:Array<IAssetImage>) => [
-                                ...prevAssetsImages,
-                                { _id: asset._id, image: imageRes }
-                            ]);
-                        } else if (!cancel && imageRes.status === 204) {
-                            setAssetImages((prevAssetsImages:Array<IAssetImage>) => [
-                                ...prevAssetsImages,
-                                { _id: asset._id, image: null }
-                            ]);
-                        }
-                    })
-                    .catch(err => {
-                        console.log(err);
-                    });
-                })
             }
         }).catch(err => {
             console.error(err);
@@ -143,18 +119,6 @@ export default function UnitScreen() {
         },
     }
 
-    const AssetImageComponent = ({ assetId }: {assetId: string}) => {
-        const i = assetImages.findIndex(image => image._id === assetId);
-        if (i === -1 || assetImages[i].image == null) return <></>; // could be a loading image/icon
-        const assetImage = assetImages[i].image;
-        return (
-            <img
-                src={`data:${assetImage.headers['content-type']};base64,${assetImage.data.toString('base64')}`}
-                alt='asset'
-            />
-        )
-    };
-
     return (
         <Container>
             <Title level={2}>{unit?.name}</Title>
@@ -164,11 +128,7 @@ export default function UnitScreen() {
             </div>
             <div> {
                 assets.map(asset => (
-                    <div key={asset._id}>
-                        <Title level={3}>{asset.name}</Title>
-                        <p>{asset.description}</p>
-                        <AssetImageComponent assetId={asset._id}/>
-                    </div>
+                    <AssetCard asset={asset}/>
                 ))
             } </div>
         </Container>
