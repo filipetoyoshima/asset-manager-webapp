@@ -21,4 +21,10 @@ export const Container = styled(Layout)`
         left: 0;
         z-index: 1;
     }
+
+    .logout-button {
+        position: absolute;
+        left: 16px;
+        bottom: 15px;
+    }
 `

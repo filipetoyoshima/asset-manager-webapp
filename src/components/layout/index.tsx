@@ -1,4 +1,4 @@
-import { Layout, Menu } from 'antd';
+import { Layout, Menu, Button } from 'antd';
 import { UnorderedListOutlined } from '@ant-design/icons';
 import React from 'react';
 import { Container } from './style';
@@ -29,6 +29,9 @@ function LayoutComponent(props: React.PropsWithChildren<{}>) {
                         <a href='/in/'>Units</a>
                     </Menu.Item>
                 </Menu>
+                <Button type='link' className='logout-button'>
+                    Logout
+                </Button>
             </Sider>
             <Content className='content'>
                 {props.children}
